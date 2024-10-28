@@ -1,16 +1,28 @@
 const yesButton = document.getElementById('yesButton');
-const noButton = document.getElementById('noButton');
 const answerDiv = document.getElementById('answer');
 
 yesButton.addEventListener('click', () => {
   answerDiv.textContent = 'Isso mesmo. Se você for a Milena, é só se olhar no espelho para confirmar.';
 });
 
-noButton.addEventListener('mousemove', (event) => {
-  const rect = noButton.getBoundingClientRect();
-  const x = event.clientX - rect.left - 20; // Ajustado para melhor posicionamento
-  const y = event.clientY - rect.top - 20;  // Ajustado para melhor posicionamento
-  noButton.style.left = x + 'px';
-  noButton.style.top = y + 'px';
-  noButton.style.position = 'absolute'; // Necessário para o posicionamento absoluto funcionar
+const noButtonArea = document.createElement('div');
+noButtonArea.style.width = '150px';
+noButtonArea.style.height = '50px';
+noButtonArea.style.margin = '0 10px';
+noButtonArea.style.cursor = 'pointer';
+noButtonArea.style.backgroundColor = '#f44336';
+noButtonArea.style.borderRadius = '5px';
+noButtonArea.style.color = 'white';
+noButtonArea.style.textAlign = 'center';
+noButtonArea.style.lineHeight = '50px';
+noButtonArea.textContent = 'Não, sempre soube que o Thiago é maluco';
+
+document.querySelector('.buttons').appendChild(noButtonArea);
+
+noButtonArea.addEventListener('click', () => {
+  const funnyMessage = document.createElement('p');
+  funnyMessage.textContent = 'Essa opção está com defeito! Parece que o Thiago está mesmo certo...';
+  funnyMessage.style.marginTop = '20px';
+  document.querySelector('.buttons').appendChild(funnyMessage);
+  noButtonArea.remove();
 });
